@@ -1,17 +1,18 @@
 {
-  "name": "jetScroll",
+  "name": "jetSlider",
   "version": "0.1.0",
   "description": "Simple plugin for making beautiful single-page applications",
-  "main": "jquery.jetscroll.js",
+  "main": "jquery.jetslider.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/gavr-pavel/jquery.jetscroll.js"
+    "url": "git://github.com/gavr-pavel/jquery.jetslider.js"
   },
   "keywords": [
     "single-page",
+    "slider",
     "scroll"
   ],
   "author": "Pavel Gavrilenko",
