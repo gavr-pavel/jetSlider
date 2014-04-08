@@ -1,0 +1,27 @@
+{
+  "name": "jetScroll",
+  "version": "0.1.0",
+  "description": "Simple plugin for making beautiful single-page applications",
+  "main": "jquery.jetscroll.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gavr-pavel/jquery.jetscroll.js"
+  },
+  "keywords": [
+    "single-page",
+    "scroll"
+  ],
+  "author": "Pavel Gavrilenko",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/gavr-pavel/jquery.jetscroll.js/issues"
+  },
+  "devDependencies": {
+    "gulp": "~3.6.0",
+    "gulp-uglify": "~0.2.1",
+    "gulp-concat": "~2.2.0"
+  }
+}
