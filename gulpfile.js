@@ -5,9 +5,9 @@ var concat = require('gulp-concat');
 
 
 gulp.task('uglify', function () {
-    gulp.src('./jquery.jetscroll.js')
+    gulp.src('./jquery.jetslider.js')
         .pipe(uglify())
-        .pipe(concat('jquery.jetscroll.min.js'))
+        .pipe(concat('jquery.jetslider.min.js'))
         .pipe(gulp.dest('./'));
 });
 
