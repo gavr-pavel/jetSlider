@@ -150,6 +150,7 @@
         }
 
         function moveWithCss3d (offset, callback) {
+            console.log(options.transitionDuration);
             $container
                 .css({
                     transitionDuration: animationsDisabled ? '0s' : (options.transitionDuration/1000).toFixed(2) + 's',
@@ -213,6 +214,9 @@
             })
             .on('jetslider.keyboard', function (evt, enabled) {
                 $doc[enabled ? 'on' : 'off']('keydown', keyboardHandler);
+            })
+            .on('jetslider.transitionduration', function (evt, value) {
+                options.transitionDuration = value;
             });
 
         return this;
