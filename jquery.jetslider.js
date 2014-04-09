@@ -1,4 +1,5 @@
 ;(function ($, win) {
+    'use strict';
 
     var agent = {
         checkCssProp: function (prop) {
