@@ -1,7 +1,14 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
+var jshint = require('gulp-jshint');
 
+
+gulp.task('lint', function() {
+  gulp.src('./jquery.jetslider.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
 
 
 gulp.task('uglify', function () {
@@ -12,4 +19,4 @@ gulp.task('uglify', function () {
 });
 
 
-gulp.task('default', ['uglify']);
+gulp.task('default', ['lint', 'uglify']);

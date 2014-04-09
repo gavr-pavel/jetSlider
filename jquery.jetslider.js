@@ -66,9 +66,10 @@
         var slidesNum = $slides.length;
         var animating = false;
         var animationsDisabled = false;
+        var moveMethod;
 
         if (agent.supportsProps('transition', 'transform')) {
-            var moveMethod = agent.supports3d() ? moveWithCss3d : moveWithCss;
+            moveMethod = agent.supports3d() ? moveWithCss3d : moveWithCss;
             moveMethod({left: 0, top: 0});
             $container
                 .css({
@@ -76,7 +77,7 @@
                     transitionTimingFunction: options.easing
                 });
         } else {
-            var moveMethod = moveWithJs;
+            moveMethod = moveWithJs;
         }
 
         $doc
@@ -164,7 +165,7 @@
         function moveWithJs (offset, callback) { // TODO: debug
             if (animationsDisabled || !options.jsFallback) {
                 win.scrollTo(offset.left, offset.top);
-                callback && callback();
+                if (callback) callback();
             } else {
                 $scrollRoot
                     .animate({
