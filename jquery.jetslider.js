@@ -150,7 +150,6 @@
         }
 
         function moveWithCss3d (offset, callback) {
-            console.log(options.transitionDuration);
             $container
                 .css({
                     transitionDuration: animationsDisabled ? '0s' : (options.transitionDuration/1000).toFixed(2) + 's',
