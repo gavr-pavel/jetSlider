@@ -107,6 +107,12 @@
             }
         });
 
+        $win.on('scroll', function () {
+            if (moveMethod !== moveWithJs) {
+                win.scrollTo(0, 0);
+            }
+        });
+
         $body.css({overflow: 'hidden'});
 
         $container
