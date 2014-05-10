@@ -5,7 +5,7 @@ Simple plugin for making beautiful page transitions
 
 
 Options
-=======
+-------
 
 | Option             | Type       | Default                                                | Description |
 | ------------------ | ---------- | ------------------------------------------------------ | ----------- |
@@ -25,7 +25,7 @@ $('.slider').jetSlider(optionName, value);
 ```
 
 Move methods
-============
+------------
 
 ```javascript
 $('.slider').jetSlider('moveto', index);
@@ -41,7 +41,7 @@ $('.slider').jetSlider('movedown');
 
 
 Like declarative initialization?
-================================
+--------------------------------
 
 You can initialize plugin without js code! Just add `data-jetslider` attribute to slider container.
 
