@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Slider example</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="../jquery.jetslider.js"></script>
+        <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+        <style>
+            * {margin: 0; padding: 0;}
+            html, body, .main, .page {
+                height: 100%;
+            }
+            body {
+                color: #fff;
+                font-family: "Lato" sans-serif;
+            }
+            .page {
+                overflow: hidden;
+                font-weight: 300;
+            }
+                .page a {
+                    color: #fff;
+                }
+                .page ul {
+                    max-width: 600px;
+                    margin: 50px auto 0;
+                    font-size: 28px;
+                }
+                    .page ul li {
+                        margin: 15px 0;
+                    }
+            .page1 {
+                background-color: #389090;
+                text-align: center;
+            }
+            .page2 {
+                background-color: #F47E7D;
+            }
+            .page3 {
+                background-color: #B5D045;
+                position: relative;
+                left: 200%;
+                top: -200%;
+            }
+            .page4 {
+                background-color: #FB8335;
+                position: relative;
+                left: 300%;
+                top: -300%;
+                width: 70%;
+            }
+            .page5 {
+                background-color: #81C0C5;
+                position: relative;
+                left: 370%;
+                top: -400%;
+            }
+            .page6 {
+                background-color: #9686BE;
+                position: relative;
+                height: 80%;
+                left: 370%;
+                top: -400%;
+                height: 50%;
+            }
+            h1 {
+                font-size: 100px;
+                margin: 200px 0 10px;
+            }
+            h2 {
+                font-size: 72px;
+                font-weight: 300;
+                text-align: center;
+                margin-top: 60px;
+            }
+            h3 {
+                margin-top: 100px;
+            }
+            .text-block {
+                margin-top: 150px;
+                font-size: 38px;
+                font-weight: 500;
+                text-align: center;
+            }
+            .code-block {
+                max-width: 800px;
+                margin: 30px auto 60px;
+                text-align: left;
+            }
+            .joint1 {
+                height: 200%;
+                background-image: linear-gradient(#389090, #F47E7D);
+            }
+            .joint2 {
+                width: 100%;
+                height: 100%;
+                background-image: linear-gradient(90deg, #F47E7D, #B5D045);
+                position: relative;
+                left: 100%;
+                top: -100%;
+            }
+            .nav {
+                width: 102px;
+                position: absolute;
+                bottom: 20px;
+                left: 50%;
+                margin-left: -51px;
+                list-style: none;
+                pointer-events: none;
+            }
+                .nav li {
+                    float: left;
+                    width: 5px;
+                    height: 5px;
+                    margin: 0 5px;
+                    border-radius: 50%;
+                    border: 1px solid #fff;
+                    -webkit-transition: background-color 1s;
+                    -moz-transition: background-color 1s;
+                    transition: background-color 1s;
+                }
+
+                .nav li.active {
+                    background-color: #fff;
+                }
+        </style>
+        <script>
+            $(function () {
+                $('.main').jetSlider('onBeforeMove', function (newIndex, oldIndex) {
+                    $('.nav li')
+                        .removeClass('active')
+                        .eq(newIndex)
+                        .addClass('active');
+                });
+            });
+        </script>
+    </head>
+    <body>
+
+        <div class="main" data-jetslider data-slide-selector=".page" data-transition-duration="1000" data-keyboard="true">
+            <section class="page page1">
+                <h1>jetSlider</h1>
+                <p>jQuery plugin</p>
+                <h3>Scroll/swipe down<br>or<br>press down arrow key</h3>
+            </section>
+            <div class="joint1"></div>
+            <section class="page page2">
+                <h2>Features</h2>
+                <ul>
+                    <li>Declarative init</li>
+                    <li>Ability to change settings after init</li>
+                    <li>Fullpage or inline sliders (with many instances on page)</li>
+                    <li>Animating through the content between slides</li>
+                </ul>
+            </section>
+            <div class="joint2"></div>
+            <section class="page page3">
+                <h2>More features</h2>
+                <ul>
+                    <li>Slide element with size different than size of window won't break the slider</li>
+                    <li>Slide elements can be positioned vertically and horizontally (or even diagonally)</li>
+                    <li>CSS3 easing functions</li>
+                    <li>IE8+ support with fallback to JS animation</li>
+                </ul>
+            </section>
+            <section class="page page4">
+                <h2>Code of this demo</h2>
+                <div class="code-block">
+                    <script src="https://gist.github.com/gavr-pavel/b281c9ef241fef360e89.js"></script>
+                </div>
+            </section>
+            <section class="page page5">
+                <h2>&nbsp;</h2>
+                <p class="text-block">Take a look at the plugin API <a href="https://github.com/gavr-pavel/jetSlider#jetslider">here</a></p>
+            </section>
+            <section class="page page6">
+                <p class="text-block">Made by <a href="https://github.com/gavr-pavel">Pavel Gavrilenko</a> at <a href="https://github.com/dvhb">DevHub</a></p>
+            </section>
+        </div>
+
+        <ul class="nav">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        <a href="https://github.com/gavr-pavel/jetSlider"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+
+    </body>
+</html>
