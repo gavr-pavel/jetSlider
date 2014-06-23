@@ -1,5 +1,5 @@
 /*
-*  jquery.jetslider.js v1.0b
+*  jquery.jetslider.js v0.3
 *
 *  Copyright 2014 DevHub, Pavel Gavrilenko
 *
@@ -8,13 +8,13 @@
 *  Examples and docs: https://github.com/gavr-pavel/jetSlider
 */
 
-!function(factory) {
+;(function(factory) {
     if (typeof define === 'function' && define.amd) {
         define(['jquery'], factory);
     } else {
         factory(jQuery);
     }
-}(function ($) {
+})(function ($) {
     'use strict';
 
     var agent = {
@@ -54,6 +54,15 @@
         }
     };
 
+    function getOptsFromAttrs ($element) {
+        var optionList = ['slideSelector', 'transitionDuration', 'scroll', 'keyboard', 'easing', 'jsFallback'];
+        var options = {};
+        $.each(optionList, function (i, option) {
+            options[option] = $element.data(option);
+        });
+        return options;
+    }
+
 
     function JetSlider (elem, options) {
         var self = this;
@@ -63,11 +72,12 @@
         this._el = elem;
         this._$el = $(elem);
 
-        this.options = $.extend({}, $.fn.jetSlider.defaults, options);
+        this.options = $.extend({}, $.fn.jetSlider.defaults, getOptsFromAttrs(this._$el), options);
 
         if (this._$el.parent().is(this._$body)) {
             this._$viewport = $('html,body');
             this._$body.css({overflow: 'hidden'});
+            /* jshint eqnull:true */
             if (this.options.keyboard == null) {
                 this.options.keyboard = true;
             }
@@ -82,14 +92,15 @@
 
         this._$el
             .css({position: 'relative'})
-            .addClass('jetslider')
-            .addClass('jetslider-page-0');
+            .addClass('jetslider');
 
-        this._$win.one('load', function () {
-            setTimeout(function () {
-                self._$viewport.scrollLeft(0).scrollTop(0);
-            }, 0);
-        });
+        if (!/loaded|complete/.test(document.readyState)) {
+            this._$win.one('load', function () {
+                setTimeout(function () {
+                    self._$viewport.scrollLeft(0).scrollTop(0);
+                }, 0);
+            });
+        }
 
         this._$slides = this._$el.find(this.options.slideSelector);
         this._slidesNum = this._$slides.length;
@@ -99,6 +110,7 @@
         this._animationsDisabled = false;
 
         this._initHandlers();
+
     }
 
 
@@ -184,9 +196,6 @@
         this._$el.css({pointerEvents: 'none'});
 
         this._move(this._$slides.eq(index), $.proxy(function () {
-            this._$el
-                .removeClass(this._el.className.match(/jetslider-page-\d+/)[0])
-                .addClass('jetslider-page-' + index);
             if ($.isFunction(this.options.onAfterMove)) {
                 this.options.onAfterMove.call(this._el, index, this._currentIndex);
             }
@@ -194,6 +203,10 @@
             this._animating = false;
             this._$el.css({pointerEvents: ''});
             this._lastAnimationEnded = Date.now();
+            if (this._resizeHandleNeeded) {
+                this._resizeHandler();
+                this._resizeHandleNeeded = false;
+            }
         }, this));
     };
 
@@ -223,35 +236,36 @@
             .on('touchstart', this._touchStartHandler)
             .on('touchmove', this._touchMoveHandler);
 
-        if (this._$el.parent().is(this._$body) && this._moveMethod !== 'js') {
-            var self = this;
-            this._$win.on('resize scroll', function () {
-                self._$viewport
-                    .scrollLeft(0)
-                    .scrollTop(0);
-            });
-        }
+        (this._$viewport.is(this._$body) ? this._$win : this._$viewport)
+            .on('scroll', this._scrollHandler);
+
     };
 
-    JetSlider.prototype._resizeHandler = function () {
+    JetSlider.prototype._scrollHandler = function () {
         if (this._moveMethod === 'css') {
             this._$viewport
                 .scrollLeft(0)
                 .scrollTop(0);
         }
+    };
+
+    JetSlider.prototype._resizeHandler = function () {
+        this._scrollHandler();
+
         if (this._animating) {
-            return;
+            this._resizeHandleNeeded = true;
+        } else {
+            this._animationsDisabled = true;
+            this._move(this._$slides.eq(this._currentIndex));
+            this._animationsDisabled = false;
         }
-        this._animationsDisabled = true;
-        this._move(this._$slides.eq(this._currentIndex));
-        this._animationsDisabled = false;
     };
 
     JetSlider.prototype._mouseHandler = function (evt) {
         evt.preventDefault();
         if (!this.options.scroll) return;
         if (this._animating) return;
-        // 1500 ms delay after last mousewheel event is needed to prevent extra scroll
+        // 1500 ms delay after last mousewheel event is needed to prevent odd scroll
         if ((Date.now() - this._lastAnimationEnded) < (1500 - this.options.transitionDuration)) return;
         var delta = evt.originalEvent.wheelDelta || -evt.originalEvent.detail;
         var direction = delta > 0 ? -1 : 1;
@@ -294,6 +308,32 @@
         }
     };
 
+    JetSlider.prototype.destroy = function () {
+        this._$el.css({
+            position: '',
+            transition: '',
+            transform: '',
+            backfaceVisibility: ''
+        });
+
+        this._$el.removeClass('jetslider');
+
+        this._$viewport.css({overflow: ''});
+
+        this._$el
+            .off('mousewheel DOMMouseScroll MozMousePixelScroll', this._mouseHandler)
+            .off('touchstart', this._touchStartHandler)
+            .off('touchmove', this._touchMoveHandler);
+
+        this._$win.off('resize', this._resizeHandler);
+        this._$doc.off('keydown', this._keyHandler);
+
+        (this._$viewport.is(this._$body) ? this._$win : this._$viewport)
+            .off('scroll', this._scrollHandler);
+
+        $.removeData(this._el, 'plugin_jetslider');
+    };
+
 
     $.fn.jetSlider = function () {
         if (typeof arguments[0] === 'string') {
@@ -310,6 +350,9 @@
                         break;
                     case 'moveto':
                         instance.moveTo(args[1]);
+                        break;
+                    case 'destroy':
+                        instance.destroy();
                         break;
                     default:
                         instance.setOption(args[0], args[1]);
@@ -331,11 +374,10 @@
 
     $.fn.jetSlider.defaults = {
         slideSelector: 'section',
-        transitionDuration: 800,
+        transitionDuration: 1000,
         scroll: true,
         keyboard: null,
         easing: 'ease',
-        nav: false,
         jsFallback: true,
         onBeforeMove: null,
         onAfterMove: null
@@ -343,15 +385,7 @@
 
 
     $(function () {
-        $('[data-jetslider]').each(function () {
-            var $element = $(this);
-            var optionList = ['slideSelector', 'transitionDuration', 'scroll', 'keyboard', 'easing', 'jsFallback'];
-            var options = {};
-            $.each(optionList, function (i, option) {
-                options[option] = $element.data(option);
-            });
-            $element.jetSlider(options);
-        });
+        $('[data-jetslider]').jetSlider();
     });
 
-}, this);
+});
