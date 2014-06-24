@@ -1,6 +1,6 @@
 {
   "name": "jetSlider",
-  "version": "0.3",
+  "version": "1.0.0",
   "homepage": "https://github.com/gavr-pavel/jetSlider",
   "authors": [
     "Pavel Gavrilenko <gavr.pavel@gmail.com>"
@@ -10,7 +10,8 @@
   "keywords": [
     "jquery",
     "slider",
-    "fullpage"
+    "scroll",
+    "single-page"
   ],
   "license": "MIT",
   "ignore": [

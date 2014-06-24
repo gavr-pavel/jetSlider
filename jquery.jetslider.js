@@ -1,5 +1,5 @@
 /*
-*  jquery.jetslider.js v0.3
+*  jquery.jetslider.js v1.0.0
 *
 *  Copyright 2014 DevHub, Pavel Gavrilenko
 *
