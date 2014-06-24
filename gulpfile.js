@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var uglify = require('gulp-uglify');
+var uglify = require('gulp-uglifyjs');
 var concat = require('gulp-concat');
 var jshint = require('gulp-jshint');
 
@@ -13,8 +13,9 @@ gulp.task('lint', function() {
 
 gulp.task('uglify', function () {
     gulp.src('./jquery.jetslider.js')
-        .pipe(uglify())
-        .pipe(concat('jquery.jetslider.min.js'))
+        .pipe(uglify('jquery.jetslider.min.js', {
+            outSourceMap: true
+        }))
         .pipe(gulp.dest('./'));
 });
 

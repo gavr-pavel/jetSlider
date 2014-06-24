@@ -1,0 +1,33 @@
+{
+  "name": "jetSlider",
+  "version": "0.3",
+  "homepage": "https://github.com/gavr-pavel/jetSlider",
+  "authors": [
+    "Pavel Gavrilenko <gavr.pavel@gmail.com>"
+  ],
+  "description": "Simple plugin for making beautiful page transitions",
+  "main": "jquery.jetslider.js",
+  "keywords": [
+    "jquery",
+    "slider",
+    "fullpage"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "gulpfile.js",
+    "package.json",
+    "example"
+  ],
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "dependencies": {
+    "jquery": ">=1.8.0"
+  }
+}
