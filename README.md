@@ -4,6 +4,11 @@ jetSlider
 Simple plugin for making beautiful page transitions
 
 
+Demo
+----
+[Fullpage](http://gavr-pavel.github.io/jetSlider/fullpage_example.html) | [Inline](http://gavr-pavel.github.io/jetSlider/inline_example.html)
+
+
 Options
 -------
 
@@ -24,7 +29,8 @@ Options can be changed after initialization:
 $('.slider').jetSlider(optionName, value);
 ```
 
-Move methods
+
+Methods
 ------------
 
 ```javascript
@@ -39,6 +45,9 @@ $('.slider').jetSlider('moveup');
 $('.slider').jetSlider('movedown');
 ```
 
+```javascript
+$('.slider').jetSlider('destroy');
+```
 
 Like declarative initialization?
 --------------------------------
