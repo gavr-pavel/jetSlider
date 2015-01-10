@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <title>Slider example</title>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="./jquery.jetslider.min.js"></script>
@@ -89,6 +89,12 @@
                 margin: 30px auto 60px;
                 text-align: left;
             }
+            .code-link {
+                display: none;
+                margin-top: 50px;
+                text-align: center;
+                font-size: 28px;
+            }
             .joint1 {
                 height: 200%;
                 background-image: linear-gradient(#389090, #F47E7D);
@@ -125,6 +131,43 @@
                 .nav li.active {
                     background-color: #fff;
                 }
+
+            @media screen and (max-width: 700px) {
+                .page ul {
+                    max-width: 360px;
+                    font-size: 18px;
+                }
+                .code-block {
+                    display: none;
+                    max-width: none;
+                    margin-left: 30px;
+                    margin-right: 30px;
+                }
+                .code-link {
+                    display: block;
+                }
+            }
+            @media screen and (max-width: 400px) {
+                h1 {
+                    margin-top: 180px;
+                    font-size: 50px;
+                }
+                .page ul {
+                    max-width: 260px;
+                    font-size: 16px;
+                }
+                h3 {
+                    margin-top: 50px;
+                    font-size: 16px;
+                }
+                h2 {
+                    font-size: 50px;
+                }
+                .text-block {
+                    margin-top: 75px;
+                    font-size: 28px;
+                }
+            }
         </style>
         <script>
             $(function () {
@@ -170,6 +213,9 @@
                 <h2>Code of this demo</h2>
                 <div class="code-block">
                     <script src="https://gist.github.com/gavr-pavel/b281c9ef241fef360e89.js"></script>
+                </div>
+                <div class="code-link">
+                    <a href="https://gist.github.com/gavr-pavel/b281c9ef241fef360e89">gist</a>
                 </div>
             </section>
             <section class="page page5">
