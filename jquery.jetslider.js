@@ -231,7 +231,7 @@
 
         this._$win.on('resize', this._resizeHandler);
         this._$doc.on('keydown', this._keyHandler);
-        this._$el
+        this._$viewport
             .on('mousewheel DOMMouseScroll MozMousePixelScroll', this._mouseHandler)
             .on('touchstart', this._touchStartHandler)
             .on('touchmove', this._touchMoveHandler);
@@ -293,14 +293,20 @@
     };
 
     JetSlider.prototype._touchStartHandler = function (evt) {
-        this._touchStartedAt = evt.originalEvent.touches[0];
+        evt.preventDefault();
+        var touch = evt.originalEvent.touches[0];
+        this._touchStartedAt = {
+            x: touch.pageX,
+            y: touch.pageY
+        };
     };
 
     JetSlider.prototype._touchMoveHandler = function (evt) {
+        evt.preventDefault();
         if (this._animating) return;
         var touch = evt.originalEvent.touches[0];
-        var dX = touch.pageX - this._touchStartedAt.pageX;
-        var dY = touch.pageY - this._touchStartedAt.pageY;
+        var dX = touch.pageX - this._touchStartedAt.x;
+        var dY = touch.pageY - this._touchStartedAt.y;
         if (dX > 50 || dY > 50) {
             this.moveUp();
         } else if (dX < -50 || dY < -50 ) {
@@ -320,7 +326,7 @@
 
         this._$viewport.css({overflow: ''});
 
-        this._$el
+        this._$viewport
             .off('mousewheel DOMMouseScroll MozMousePixelScroll', this._mouseHandler)
             .off('touchstart', this._touchStartHandler)
             .off('touchmove', this._touchMoveHandler);
