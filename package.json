@@ -1,6 +1,6 @@
 {
   "name": "jetSlider",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple plugin for making beautiful single-page applications",
   "main": "jquery.jetslider.js",
   "scripts": {
@@ -23,7 +23,6 @@
   },
   "devDependencies": {
     "gulp": "~3.6.0",
-    "gulp-concat": "~2.2.0",
     "gulp-jshint": "~1.5.3",
     "gulp-uglifyjs": "~0.3.0"
   }

@@ -1,13 +1,9 @@
 /*
-*  jquery.jetslider.js v1.0.0
-*
+*  jetSlider v1.0.1
+*  Simple plugin for making beautiful page transitions
 *  Copyright 2014 DevHub, Pavel Gavrilenko
-*
-*  Creates flexible slider with smooth animations
-*
 *  Examples and docs: https://github.com/gavr-pavel/jetSlider
 */
-
 ;(function(factory) {
     if (typeof define === 'function' && define.amd) {
         define(['jquery'], factory);
