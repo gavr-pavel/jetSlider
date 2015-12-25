@@ -1,0 +1,29 @@
+{
+  "name": "jetSlider",
+  "version": "1.0.1",
+  "description": "Simple plugin for making beautiful single-page applications",
+  "main": "jquery.jetslider.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gavr-pavel/jquery.jetslider.js"
+  },
+  "keywords": [
+    "jquery",
+    "slider",
+    "scroll",
+    "single-page"
+  ],
+  "author": "Pavel Gavrilenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gavr-pavel/jquery.jetscroll.js/issues"
+  },
+  "devDependencies": {
+    "gulp": "~3.6.0",
+    "gulp-jshint": "~1.5.3",
+    "gulp-uglifyjs": "~0.3.0"
+  }
+}
