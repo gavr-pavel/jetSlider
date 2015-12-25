@@ -6,7 +6,7 @@ Simple plugin for making beautiful page transitions
 
 Demo
 ----
-[Fullpage](http://gavr-pavel.github.io/jetSlider/fullpage_example.html) | [Inline](http://gavr-pavel.github.io/jetSlider/inline_example.html)
+[Fullpage](http://gavr-pavel.github.io/jetSlider/example/fullpage_example.html) | [Inline](http://gavr-pavel.github.io/jetSlider/example/inline_example.html)
 
 
 Options
