@@ -1,7 +1,7 @@
 jetSlider
 =========
 
-Simple plugin for making beautiful page transitions
+Simple plugin for making pretty transitions
 
 
 Demo
